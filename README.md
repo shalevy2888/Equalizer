@@ -8,7 +8,7 @@ This project is an example demo that uses Unity's audio data and spectrum interf
   - AudioFilterFactory component is required for any of the filters to work
   - AudioFilterPeakingFilter component is required for the equalier to work
   - AudioSynth component can be used to override the audio source with a simple synthesizer - be careful when playing with high frequencies and high gain, it can damage your speakers
-  ![Image of AudioSource](https://github.com/shalevy2888/Equalizer/blob/master/Assets/Readme%20Resources/Audio Source and Filters.png)
+  ![Image of AudioSource](https://github.com/shalevy2888/Equalizer/blob/master/Assets/Readme%20Resources/Audio%20Source%20and%20Filters.png)
 
 2. The Equalizer object, includes:
   - AudioAnalyzer component is used to analyze the audio and display the frequency bands

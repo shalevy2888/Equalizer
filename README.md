@@ -1,4 +1,5 @@
 # Equalizer
 Unity based equalizer project
-![GitHub Logo](/Assets/Readme Resources/Equalizer.png)
-![Test Image 1](Equalizer/Assets/Readme Resources/Equalizer.png)
+If you want to embed images, this is how you do it:
+
+![Image of Yaktocat](https://octodex.github.com/images/yaktocat.png)

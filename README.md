@@ -15,3 +15,7 @@ This project is an example that uses Unity's audio data and spectrum interfaces 
   - Equalizer component is used to visualize the Peaking Filter
   ![Image of AudioSource](https://github.com/shalevy2888/Equalizer/blob/master/Assets/Readme%20Resources/Equalizer.png)
 
+Credit: 
+- The BiQuadFilter is from Mark Heath: https://github.com/naudio/NAudio
+- Baseline code for analyzer taken from this thread: https://answers.unity.com/questions/157940/getoutputdata-and-getspectrumdata-they-represent-t.html
+- Some ideas taken from Peer Play youtube channel: https://www.youtube.com/channel/UCBkub2TsbCFIfdhuxRr2Lrw

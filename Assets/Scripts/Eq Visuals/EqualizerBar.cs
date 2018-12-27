@@ -23,7 +23,7 @@ public class EqualizerBar : MonoBehaviour {
 			visualBars[i].localScale = new Vector3(barXScale, (barYScale-0.03f), 1);
 			visualBars[i].localPosition = Vector3.up * i * barYScale + Vector3.up * 0.5f;
 
-			Color newBaseColor = baseColor * (.85f * ((Mathf.InverseLerp(0,numOfBars, i) + 0.15f)));
+			Color newBaseColor = baseColor * (1.25f * ((Mathf.InverseLerp(0,numOfBars, i) + 0.15f)));
 			newBaseColor.a = 1;
 
 			visualBars[i].gameObject.GetComponent<Renderer>().material.color = newBaseColor;

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class Equalizer : MonoBehaviour {
-	public AudioAnalyzer visualizer;
+	public AudioAnalyzer analyzer;
 	public GameObject equalizerBarPrefab;
 	public GameObject barPrefab;
 	public GameObject knobPrefab;
@@ -17,7 +17,7 @@ public class Equalizer : MonoBehaviour {
 	public AudioFilterPeakingFilter filter;
 	// Use this for initialization
 	void Start () {
-		int num = visualizer.numOfBands;
+		int num = analyzer.numOfBands;
 		bars = new EqualizerBar[num];
 
 		columnScale = maxXCoordinate / num;
@@ -26,7 +26,7 @@ public class Equalizer : MonoBehaviour {
 		LineRenderer lr = GetComponent<LineRenderer>();
 		lr.positionCount = num;
 		lr.colorGradient = barColorsGradient;
-		lr.material = new Material (Shader.Find("Particles/Additive"));
+		//lr.material = new Material (Shader.Find("Particles/Additive"));
 
 		for (int i = 0; i < num; i++) {
 			GameObject go = GameObject.Instantiate(equalizerBarPrefab) as GameObject;
@@ -40,7 +40,7 @@ public class Equalizer : MonoBehaviour {
 			bar.barYScale = barYScale;
 			bar.barXScale = barXScale;
 			bar.baseColor = barColorsGradient.Evaluate(Mathf.InverseLerp(0,num,i));
-			float hertz = visualizer.GetBandMidFreq(i);
+			float hertz = analyzer.GetBandMidFreq(i);
 			if (hertz >= 10000) {
 				hertz = hertz / 1000;
 				bar.text.text = hertz.ToString("F0") + "k";
@@ -60,16 +60,17 @@ public class Equalizer : MonoBehaviour {
 			knobPosition.z = -0.8f;
 			knob.transform.localPosition = knobPosition;
 			knob.GetComponent<EqKnob>().id = i;
-		}	
+		}
+		AudioAnalyzer.spectrumBarsUpdated += UpdateVisuals;
 	}
 
 	bool knobClicked = false;
 	Transform knobClickedTransform = null;
-	void Update()
+	void UpdateVisuals()
 	{
-		for (int i = 0; i < visualizer.numOfBands; i++) {
-			float value = visualizer.GetVisualScale(i);
-			float decayedValue = visualizer.GetVisualScaleDecayed(i);
+		for (int i = 0; i < analyzer.numOfBands; i++) {
+			float value = analyzer.GetVisualScale(i);
+			float decayedValue = analyzer.GetVisualScaleDecayed(i);
 			bars[i].UpdateBar(value, decayedValue);
 		}
 
@@ -105,7 +106,7 @@ public class Equalizer : MonoBehaviour {
 				knobClickedTransform.position = new Vector3(knobClickedTransform.position.x, newYPosition, 
 					knobClickedTransform.position.z);
 				int i = knobClickedTransform.GetComponent<EqKnob>().id;
-				Vector3 lrPos = new Vector3((i-visualizer.numOfBands/2) * columnScale, newYPosition, -7f);
+				Vector3 lrPos = new Vector3((i-analyzer.numOfBands/2) * columnScale, newYPosition, -7f);
 				LineRenderer lr = GetComponent<LineRenderer>();
 				lr.SetPosition(i, lrPos);
 
